@@ -43,6 +43,21 @@ if(GIT)
     else()
         set(gitinfo "${gitinfo}\n${gitorigin}\n")
     endif()
+
+    execute_process(
+        COMMAND ${GIT} log -1 --format=%cd --date=format:%Y-%m-%d HEAD
+        WORKING_DIRECTORY ${SOURCE_DIR}
+        OUTPUT_VARIABLE gitdate
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_VARIABLE error
+        ERROR_STRIP_TRAILING_WHITESPACE
+    )
+    if(error)
+        message(WARNING "Git ${error}")
+    else()
+        set(gitinfo "${gitinfo}${gitdate}\n")
+    endif()
+
 endif()
 
 set(gitinfo_file ${OUTPUT_DIR}/gitinfo.txt)

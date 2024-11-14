@@ -13,12 +13,13 @@ string(TIMESTAMP TIMESTAMP)
 # only if the information has changed.
 file(STRINGS ${OUTPUT_DIR}/gitinfo.txt gitinfo)
 list(LENGTH gitinfo gitinfo_len)
-if(gitinfo_len LESS 3)
+if(gitinfo_len LESS 4)
     message(WARNING "Git info not available")
 else()
     list(GET gitinfo 0 describe)
     list(GET gitinfo 1 GIT_BRANCH)
     list(GET gitinfo 2 GIT_ORIGIN_URL)
+    list(GET gitinfo 3 GIT_DATE)
 endif()
 
 # The output of `git describe --always --long --tags --match=v*`.

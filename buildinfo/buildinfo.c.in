@@ -20,6 +20,8 @@ const struct buildinfo* @FUNCTION_NAME@()
         .compiler_id = "@COMPILER_ID@",
         .compiler_version = "@COMPILER_VERSION@",
         .build_type = "@BUILD_TYPE@",
+        .release_time = "@GIT_DATE@",
+	.git_tag = "@GIT_LATEST_PROJECT_VERSION@",
     };
     return &buildinfo;
 }
